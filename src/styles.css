@@ -1,0 +1,70 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h2 {
+  font-size: 2em;
+  margin: 0.5em 0 0.5em 0;
+}
+
+.videojocs-card {
+  height: 800px;
+}
+
+/** Hacer mas grande la letra del menu desplegable */
+.mat-menu-item {
+  font-size: 1.3em;
+}
+
+.list-videojocs {
+  display: flex;
+  overflow-x: scroll;
+  width: 80%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+img {
+  width: 500px;
+  height: 250px;
+  border-radius: 10px;
+}
+
+/** Mejorar la barra de scroll */
+
+p {
+  font-size: 2em;
+}
+
+/** Mejorar diseño de la lista */
+.list-videojocs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.list-videojocs ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.mat-h2,
+.mat-title,
+.mat-typography h2 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.mat-card {
+    width: 540px;
+    margin: 1em;
+    border-radius: 10px !important;
+}

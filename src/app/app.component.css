@@ -1,0 +1,25 @@
+.mat-toolbar-row {
+    justify-content: space-between;
+    color: #000;
+}
+ /** Posicionar mat toolbar row a la derecha */
+.mat-toolbar-row {
+    justify-content: flex-end;
+}
+
+/** Posicionar el boton de menu a la izquierda y la barra de busqueda a la derecha */
+.mat-toolbar-row {
+    justify-content: space-between;
+}
+
+/** Hacer que el div ocupe todo el espacio disponible */
+.mat-toolbar-row {
+    flex: 1;
+}
+
+/** Hacer un poco mas grande la letra del boton de menu */
+button.mat-button {
+    font-size: 1.3em;
+}
+
+

@@ -1,0 +1,22 @@
+<h2>Series</h2>
+
+<div class="list-videojocs-series">
+    <div *ngFor='let videojoc of listaSeriesVideojocs'>
+        <img src="{{videojoc.background_image}}" alt="">
+        <p>{{videojoc.name}}</p>
+        <strong>Generos</strong>
+        <ul>
+            <li *ngFor='let genero of videojoc.genres'>
+                {{genero.name}}
+            </li>
+        </ul>
+
+        <strong>Temporadas</strong>
+        <ul>
+            <li *ngFor='let temporada of videojoc.seasons'>
+                {{temporada.name}}
+            </li>
+        </ul>
+
+    </div>
+</div>

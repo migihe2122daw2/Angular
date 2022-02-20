@@ -1,0 +1,30 @@
+<h1>Top</h1>
+
+<div  class="list-videojocs">
+    <div *ngFor='let videojoc of listaVideojocs; let i = index;'>
+        <mat-card class="videojocs-card">
+            <mat-card-header>
+                <mat-card-title>
+                    <h1>{{videojoc.name}}</h1>
+                </mat-card-title>
+                <mat-card-subtitle>
+                    <h2>{{videojoc.description}}</h2>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content [@fade]>
+                <img src="{{videojoc.background_image}}" alt="">
+                <a  action="https://es.wikipedia.org/wiki/Wikipedia:Portada"></a>
+                
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary">
+                    <a href="{{videojoc.reddit_url}}">Ver</a>
+                </button>
+                <!-- Boton de favoritos -->
+                <button mat-raised-button color="primary" (click)="addFavorito(videojoc)">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
