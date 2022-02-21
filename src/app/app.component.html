@@ -9,6 +9,7 @@
 
 <!-- Html per al disseny de la pagina d'inici -->
 <!-- Search bar made with material-ui -->
+
 <head>
     <link rel="stylesheet" href="app.component.css">
 </head>
@@ -27,56 +28,60 @@
 
 <!-- Sidenav con angular material -->
 
-    
 
-    <!-- Barra de cerca material-ui -->
-    <mat-toolbar color="primary">
-        
-        <mat-toolbar-row>
-            <button mat-button [matMenuTriggerFor]="categories">Menu</button>
-    <mat-menu #categories="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="Genero">Genero</button>
-        <button mat-menu-item [matMenuTriggerFor]="Plataforma">Plataforma</button>
-        <button mat-menu-item [matMenuTriggerFor]="Compania">Compañia</button>
-        <button mat-menu-item [matMenuTriggerFor]="ModoJuego">Modo de juego</button>
-        <button mat-menu-item routerLink="/favoritos" routerLinkActive="active">Favoritos</button>
-    </mat-menu>
 
-    <mat-menu #Genero="matMenu">
-        <button mat-menu-item>Accion</button>
-        <button mat-menu-item>Aventura</button>
-        <button mat-menu-item>Casual</button>
-        <button mat-menu-item>Estrategia</button>
-        <button mat-menu-item>Rol</button>
-    </mat-menu>
+<!-- Barra de cerca material-ui -->
+<mat-toolbar color="primary">
 
-    <mat-menu #Plataforma="matMenu">
-        <button mat-menu-item>PC</button>
-        <button mat-menu-item>PlayStation</button>
-        <button mat-menu-item>Xbox</button>
-        <button mat-menu-item>Nintendo</button>
-        <button mat-menu-item>Nintendo Switch</button>
-    </mat-menu>
+    <mat-toolbar-row>
+        <mat-icon mat-button [matMenuTriggerFor]="categories" (mouseout)="toggle()" (mouseover)="toggle()" [@botonMenu] [@botonMenu2]="isActive ? 'active' : 'inactive'">menu</mat-icon>
+        <mat-menu #categories="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="Genero">Genero</button>
+            <button mat-menu-item [matMenuTriggerFor]="Plataforma">Plataforma</button>
+            <button mat-menu-item [matMenuTriggerFor]="Compania">Compañia</button>
+            <button mat-menu-item [matMenuTriggerFor]="ModoJuego">Modo de juego</button>
+            <button mat-menu-item routerLink="/favoritos" routerLinkActive="active">Favoritos</button>
+        </mat-menu>
 
-    <mat-menu #Compania="matMenu">
-        <button mat-menu-item>EA</button>
-        <button mat-menu-item>Ubisoft</button>
-        <button mat-menu-item>Sega</button>
-        <button mat-menu-item>Nintendo</button>
-        <button mat-menu-item>Sony</button>
-    </mat-menu>
+        <mat-menu #Genero="matMenu">
+            <button mat-menu-item>Accion</button>
+            <button mat-menu-item>Aventura</button>
+            <button mat-menu-item>Casual</button>
+            <button mat-menu-item>Estrategia</button>
+            <button mat-menu-item>Rol</button>
+        </mat-menu>
 
-    <mat-menu #ModoJuego="matMenu">
-        <button mat-menu-item>Online</button>
-        <button mat-menu-item>Offline</button>
-        <button mat-menu-item>Multiplayer</button>
-        <button mat-menu-item>Singleplayer</button>
-    </mat-menu>
-            <mat-form-field>
-                <input matInput placeholder="Buscar">
-            </mat-form-field>
-        </mat-toolbar-row>
-    </mat-toolbar>
+        <mat-menu #Plataforma="matMenu">
+            <button mat-menu-item>PC</button>
+            <button mat-menu-item>PlayStation</button>
+            <button mat-menu-item>Xbox</button>
+            <button mat-menu-item>Nintendo</button>
+            <button mat-menu-item>Nintendo Switch</button>
+        </mat-menu>
+
+        <mat-menu #Compania="matMenu">
+            <button mat-menu-item>EA</button>
+            <button mat-menu-item>Ubisoft</button>
+            <button mat-menu-item>Sega</button>
+            <button mat-menu-item>Nintendo</button>
+            <button mat-menu-item>Sony</button>
+        </mat-menu>
+
+        <mat-menu #ModoJuego="matMenu">
+            <button mat-menu-item>Online</button>
+            <button mat-menu-item>Offline</button>
+            <button mat-menu-item>Multiplayer</button>
+            <button mat-menu-item>Singleplayer</button>
+        </mat-menu>
+        <mat-form-field>
+            <input [(ngModel)]="searchValue" matInput placeholder="Buscar">
+            <!-- Hacer que funcione el boton de buscar -->
+            <button *ngIf="searchValue" mat-button matSuffix mat-icon-button (click)="searchResults(searchValue)">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+    </mat-toolbar-row>
+</mat-toolbar>
 
 
 

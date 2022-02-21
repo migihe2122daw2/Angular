@@ -26,6 +26,11 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { VideojocsFavComponent } from './videojocs/videojocs-fav/videojocs-fav.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSliderModule } from '@angular/material/slider';
+
+
 @NgModule({
   declarations: [
 
@@ -53,7 +58,10 @@ import { VideojocsFavComponent } from './videojocs/videojocs-fav/videojocs-fav.c
     MatSidenavModule,
     MatExpansionModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatOptionModule,
+    MatAutocompleteModule, 
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

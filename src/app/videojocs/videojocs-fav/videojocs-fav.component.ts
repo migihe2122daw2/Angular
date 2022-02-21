@@ -54,6 +54,7 @@ export class VideojocsFavComponent implements OnInit {
   // Eliminar elemento de la lista si ya no está en favoritos
 
   eliminarFavLista(index: number, videojoc: any) {
+    
     this.listaFav.splice(index, 1);
     // Eliminar del localStorage el id y el nombre del videojoc
     const favoritos = localStorage.getItem('favoritos');

@@ -1,30 +1,44 @@
-<h1>Top</h1>
+<h1 style="font-size: 2em; text-align: center; margin-top: 10px; font-weight: bold;">Top</h1>
 
-<div  class="list-videojocs">
-    <div *ngFor='let videojoc of listaVideojocs; let i = index;'>
-        <mat-card class="videojocs-card">
-            <mat-card-header>
-                <mat-card-title>
-                    <h1>{{videojoc.name}}</h1>
-                </mat-card-title>
-                <mat-card-subtitle>
-                    <h2>{{videojoc.description}}</h2>
-                </mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content [@fade]>
-                <img src="{{videojoc.background_image}}" alt="">
-                <a  action="https://es.wikipedia.org/wiki/Wikipedia:Portada"></a>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+<div>
+    <div  id="grid" class="list-videojocs">
+        <div *ngFor='let videojoc of listaVideojocs; let i = index;'>
+            <mat-card class="videojocs-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        <h1>{{videojoc.name}}</h1>
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        <h2></h2>
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content [@fade]>
+                    <img src="{{videojoc.background_image}}" alt="">
+                    <div id="description" class="description" style="margin-top: 10px;">
+                        {{videojoc.description}}
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <!-- Poner el rating del juego en 4 categorias -->
+                    <div class="rating">
+                        <p style="font-size: 1em;">Malo
+                            <mat-slider class="slider" [value]="videojoc.rating" step="0.1" [min]="0" [max]="5" [thumbLabel]="true" [tickInterval]="1" [vertical]="false" [disabled]="true"></mat-slider>
+                            Bueno
+                        </p>
+                    </div>
+                    
+                    <!-- Boton de favoritos -->
+                    <button class="fav" [@favoritos]=videojoc.active mat-raised-button color="primary"
+                        (click)="addFavorito(videojoc); toggle(i)">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                                  
+                    
+                </mat-card-actions>
                 
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-raised-button color="primary">
-                    <a href="{{videojoc.reddit_url}}">Ver</a>
-                </button>
-                <!-- Boton de favoritos -->
-                <button mat-raised-button color="primary" (click)="addFavorito(videojoc)">
-                    <mat-icon>favorite</mat-icon>
-                </button>
-            </mat-card-actions>
-        </mat-card>
+            </mat-card>
+        </div>
     </div>
 </div>
