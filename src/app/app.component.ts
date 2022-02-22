@@ -56,7 +56,7 @@ export class AppComponent {
 
   async searchResults(query: string) {
     const videojocs = await this.videojocsService.getSearchResults(query);
-    this.listaVideojocs = videojocs.results;
+    this.listaVideojocs = videojocs.results; //por qué necesitamos hacer esto? porque no estamos usando el servicio de videojocs
     console.log(this.listaVideojocs);
   }
 
