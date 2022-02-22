@@ -1,4 +1,6 @@
 <h1 style="font-size: 2em; text-align: center; margin-top: 10px; font-weight: bold;">Informacion</h1>
+<!-- Nombre del juego -->
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
@@ -35,11 +37,14 @@
 </style>
 
 <!-- Mostrar toda la informacion del juego -->
+
 <div>
     <div class="info-videojoc">
         <div id="grid" *ngFor='let videojoc of videojoc'>
             <!-- Poner imagen de fondo en la izquierda -->
+            
             <div id="imagen" class="img-videojoc">
+                <h1>{{videojoc.name}}</h1>
                 <img style="float: left;
                 height: 300px;
                 width: 510px;

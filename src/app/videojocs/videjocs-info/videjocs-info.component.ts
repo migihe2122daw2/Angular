@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { VideojocsService } from 'src/app/viodeojocs/services/videojocs.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { VideojocsService } from 'src/app/viodeojocs/services/videojocs.service'
   templateUrl: './videjocs-info.component.html',
   styleUrls: ['./videjocs-info.component.css']
 })
-export class VidejocsInfoComponent implements OnInit {
+export class VidejocsInfoComponent implements OnInit, OnDestroy {
 
   // Recoger el el videojoc de Servicios
   videojoc: any;
@@ -16,6 +16,11 @@ export class VidejocsInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadVideojoc();
+  }
+
+  ngOnDestroy(): void {
+    // Eliminar el videojoc de localStorage
+    localStorage.removeItem('videojocs');
   }
 
   private async loadVideojoc() {
@@ -32,6 +37,8 @@ export class VidejocsInfoComponent implements OnInit {
         this.videojoc = JSON.parse(videojoc);
       }
     }
+
+ 
 
     console.log(this.videojoc);
   }

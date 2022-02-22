@@ -7,7 +7,7 @@ import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
 })
 export class VideojocsService {
 
-  private apiKey = "6081b03a91c746419373f32848d687e3";
+  private apiKey = "85cf1449ca2a48229fd7accf6f3e593c";
   private videojocsUrl = "https://api.rawg.io/api/games";
   public videjoc: any;
 
