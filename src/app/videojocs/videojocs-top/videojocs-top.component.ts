@@ -36,36 +36,36 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class VideojocsTopComponent implements OnInit {
 
   listaVideojocs: any[] = [];
+  listaFavoritos(): any[] {
+    const favoritos = localStorage.getItem('favoritos');
+    if (favoritos) {
+      // Comprobar que el valor del localStorage tiene algo
+      if (favoritos.length > 0) {
+        return JSON.parse(favoritos);
+      }
+    }
+    return [];
+  }
+
 
   constructor(private videojocsService: VideojocsService) { }
 
   ngOnInit(): void {
-    this.loadFavoritos();
     this.loadVideojocs();
   }
 
-  private loadFavoritos() {
-    const favoritos = localStorage.getItem('favoritos');
-    if (favoritos) {
-      this.listaVideojocs = JSON.parse(favoritos);
-    }
-    // Comparar la lista de videojocs con la lista de favoritos
-    for (const videojoc of this.listaVideojocs) {
-      const favorito = this.listaVideojocs.find(favorito => favorito.id === videojoc.id);
-      if (favorito) {
-        videojoc.favorito = true;
-        videojoc.active = 'active';
-      }
-    }
 
-  }
 
   private async loadVideojocs() {
     const videojocs = await this.videojocsService.listarVideojocs();
     this.listaVideojocs = videojocs.results;
-    console.log(videojocs.results);
     for (const videojoc of this.listaVideojocs) {
       this.loadDescription(videojoc);
+      const favorito = this.listaFavoritos().find(favorito => favorito.id === videojoc.id);
+      if (favorito) {
+        videojoc.favorito = true;
+        videojoc.active = 'active';
+      }
     }
   }
 
@@ -74,18 +74,31 @@ export class VideojocsTopComponent implements OnInit {
     videojoc.description = description.description;
     // Hacer que los elementos html de la descripcion sean interpretados como html
     videojoc.description = videojoc.description.replace(/<\/?[^>]+(>|$)/g, "");
-    console.log(description.description);
+    console.log(this.listaVideojocs);
   }
 
-  moveLeft() {
-    document.getElementsByClassName('list-videojocs')[0].scrollLeft -= 100;
+  mostrarInfoJuego(videojoc: any): void {
+    //Guardar el id en sessionStorage
+    sessionStorage.setItem('id', videojoc.id);
+    // Meter el objeto videojoc en el indexedDB
+    this.guardarVideojoc(videojoc); 
+    
   }
 
-  moveRight() {
-    document.getElementsByClassName('list-videojocs')[0].scrollLeft += 100;
+  guardarVideojoc(videojoc: any) {
+    // Guardar el objeto en localStorage
+    const videojocs = localStorage.getItem('videojocs');
+    let videojocsArray: any[] = [];
+    if (videojocs) {
+      videojocsArray = JSON.parse(videojocs);
+    }
+    const existe = videojocsArray.find(videojoc => videojoc.id === videojoc.id);
+    if (existe) {
+      return;
+    }
+    videojocsArray.push(videojoc);
+    localStorage.setItem('videojocs', JSON.stringify(videojocsArray));
   }
-
-
 
   addFavorito(videojoc: any) {
     // Guardar en localStorage el id y el nombre del videojocs, si ya existe quitarlo

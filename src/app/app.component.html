@@ -35,12 +35,14 @@
 
     <mat-toolbar-row>
         <mat-icon mat-button [matMenuTriggerFor]="categories" (mouseout)="toggle()" (mouseover)="toggle()" [@botonMenu] [@botonMenu2]="isActive ? 'active' : 'inactive'">menu</mat-icon>
+        
         <mat-menu #categories="matMenu">
+            <mat-icon id="home" routerLink="/">home</mat-icon>
             <button mat-menu-item [matMenuTriggerFor]="Genero">Genero</button>
             <button mat-menu-item [matMenuTriggerFor]="Plataforma">Plataforma</button>
             <button mat-menu-item [matMenuTriggerFor]="Compania">Compañia</button>
             <button mat-menu-item [matMenuTriggerFor]="ModoJuego">Modo de juego</button>
-            <button mat-menu-item routerLink="/favoritos" routerLinkActive="active">Favoritos</button>
+            <mat-icon id="home" routerLink="/favoritos" routerLinkActive="active">favorite</mat-icon>
         </mat-menu>
 
         <mat-menu #Genero="matMenu">
@@ -76,12 +78,13 @@
         <mat-form-field>
             <input [(ngModel)]="searchValue" matInput placeholder="Buscar">
             <!-- Hacer que funcione el boton de buscar -->
-            <button *ngIf="searchValue" mat-button matSuffix mat-icon-button (click)="searchResults(searchValue)">
+            <button *ngIf="searchValue" routerLink="/buscar" routerLinkActive="active" mat-button matSuffix mat-icon-button (click)="searchResults(searchValue); onSubmit()" (keyup.enter)="searchResults(searchValue); onSubmit()">
                 <mat-icon>search</mat-icon>
             </button>
         </mat-form-field>
     </mat-toolbar-row>
 </mat-toolbar>
+
 
 
 

@@ -35,6 +35,8 @@ import { VideojocsService } from 'src/app/viodeojocs/services/videojocs.service'
   ]
 })
 
+
+
 export class AppComponent {
 
   listaVideojocs: any[] = [];
@@ -55,13 +57,18 @@ export class AppComponent {
   }
 
   async searchResults(query: string) {
-    const videojocs = await this.videojocsService.getSearchResults(query);
-    this.listaVideojocs = videojocs.results; //por qué necesitamos hacer esto? porque no estamos usando el servicio de videojocs
-    console.log(this.listaVideojocs);
+    // Guardar la busqueda en session storage
+    sessionStorage.setItem('search', query);
   }
 
+  onSubmit() {
+    // Redirigir a la pagina de busqueda
+    window.location.href = '/buscar/';
+  }
 
   
+
+
   isActive = false;
 
   toggle() {

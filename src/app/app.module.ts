@@ -29,6 +29,10 @@ import { VideojocsFavComponent } from './videojocs/videojocs-fav/videojocs-fav.c
 import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSliderModule } from '@angular/material/slider';
+import { VidejocsBuscarComponent } from './videojocs/videojocs-buscar/videjocs-buscar.component';
+import { VidejocsInfoComponent } from './videojocs/videjocs-info/videjocs-info.component';
+import {MatChipsModule} from '@angular/material/chips';
+
 
 
 @NgModule({
@@ -37,7 +41,9 @@ import { MatSliderModule } from '@angular/material/slider';
     VideojocsTopComponent,
     VideojocsMostPopularComponent,
     AppComponent,
-    VideojocsFavComponent
+    VideojocsFavComponent,
+    VidejocsBuscarComponent,
+    VidejocsInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +67,8 @@ import { MatSliderModule } from '@angular/material/slider';
     MatProgressSpinnerModule,
     MatOptionModule,
     MatAutocompleteModule, 
-    MatSliderModule
+    MatSliderModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

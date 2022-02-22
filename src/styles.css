@@ -160,6 +160,42 @@ p {
   overflow-y: scroll;
   height: 130px;
   margin-top: 1%;
+  
+}
+
+
+#header{
+  width: 90%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+body::-webkit-scrollbar:vertical {
+  width:15px;
+  background-color: #c2185b;
+}
+
+body::-webkit-scrollbar-button:increment,body::-webkit-scrollbar-button {
+  display: none;
+} 
+
+body::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+body::-webkit-scrollbar-track {
+  border-radius: 10px;  
 }
 
 
@@ -170,4 +206,12 @@ p {
   position: fixed;
 }
 
-/* Mejorar el diseño de la lista de favoritos */
+/* Posicionar iconos a la izquierda al lado del icono del menu */
+
+#home{
+  margin-left: 40%;
+}
+
+#home:hover{
+  color: #ffc107;
+}

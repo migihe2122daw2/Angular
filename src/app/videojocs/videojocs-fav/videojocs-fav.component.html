@@ -1,33 +1,45 @@
+<h1 style="font-size: 2em; text-align: center; margin-top: 10px; font-weight: bold;">Favoritos</h1>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
-<!-- Mostrar la lista de favoritos -->
-
-
-    <div style="font-size: 2em; text-align: center; margin-top: 10px; font-weight: bold;"><h1>Favoritos</h1></div>
-    <div class="list-videojocs">
-    <div *ngFor='let videojoc of listaFav; let i=index '>
-        <mat-card class="videojocs-card">
-            <mat-card-header>
-                <mat-card-title>
-                    <h1>{{videojoc.name}}</h1>
-                </mat-card-title>
-                <mat-card-subtitle>
-                    <h2>{{videojoc.description}}</h2>
-                </mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content [@fade]>
-                <img src="{{videojoc.background_image}}" alt="">
-                <a href="https://api.rawg.io/api/games/{{videojoc.id}}/description"></a>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-raised-button color="primary">
-                    <a href="https://api.rawg.io/api/games/{{videojoc.id}}?key=6081b03a91c746419373f32848d687e3">Ver</a>
-                </button>
-                <!-- Boton de favoritos -->
-                <button mat-raised-button color="primary" (click)="eliminarFav(videojoc); eliminarFavLista(i, videojoc)">
-                    <mat-icon>favorite</mat-icon>
-                </button>
-            </mat-card-actions>
-        </mat-card>
-        </div>  
+<div>
+    <div  id="grid" class="list-videojocs">
+        <div *ngFor='let videojoc of listaFav; let i = index;'>
+            <mat-card class="videojocs-card">
+                <mat-card-header id="header">
+                    <mat-card-title id="single-line">
+                        <h1>{{videojoc.name}}</h1>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content [@fade]>
+                    <img src="{{videojoc.background_image}}" alt="">
+                    <div id="description" class="description" style="margin-top: 10px;">
+                        {{videojoc.description}}
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <!-- Poner el rating del juego en 4 categorias -->
+                    <div class="rating">
+                        <p style="font-size: 1em;">Malo
+                            <mat-slider class="slider" [value]="videojoc.rating" step="0.1" [min]="0" [max]="5" [thumbLabel]="true" [tickInterval]="1" [vertical]="false" [disabled]="true"></mat-slider>
+                            Bueno
+                        </p>
+                    </div>
+                    
+                    <!-- Boton de favoritos -->
+                    <button class="fav" [@favoritos]=videojoc.active mat-raised-button color="primary"
+                        (click)="eliminarFavLista(i,videojoc); toggle(i);">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                                  
+                    
+                </mat-card-actions>
+                
+            </mat-card>
+        </div>
+        <!-- Si la lista de favoritos esta vacia DEcir que no hay favoritos -->
+        <div *ngIf="listaFav.length == 0">
+            <h1 style="font-size: 2em; text-align: center; margin-top: 10px; font-weight: bold;">No tienes ningun videojuego en favoritos :(</h1>
+        </div>
     </div>
+</div>

@@ -13,6 +13,22 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       state('void', style({ opacity: 0 })),
       transition('void => *', animate(1000)),
     ]),
+
+    // Animar boton de favoritos
+    trigger('favoritos', [
+      state('inactive', style({
+        // Dejar el corazon blanco
+        color: 'white',
+
+      })),
+      state('active', style({
+        // Poner el corazon rojo
+        color: 'red',
+      })),
+      transition('inactive => active', animate('500ms ease-in')),
+      transition('active => inactive', animate('500ms ease-out'))
+    ])
+
   ]
 })
 export class VideojocsFavComponent implements OnInit {
@@ -29,8 +45,22 @@ export class VideojocsFavComponent implements OnInit {
   private async cargarArray() {
     const favoritos = await localStorage.getItem('favoritos');
     if (favoritos) {
+      // Comprobar que el valor del localStorage tiene algo
+      if (favoritos.length > 0) {
       this.listaFav = JSON.parse(favoritos);
+      // Marcar el corazon rojo
+      for (const videojoc of this.listaFav) {
+        const favorito = this.listaFav.find(favorito => favorito.id === videojoc.id);
+        if (favorito) {
+          videojoc.favorito = true;
+          videojoc.active = 'active';
+        }
+      }
     }
+  }else{
+    // Dar un mensaje en el html
+    this.listaFav = [];
+  }
 
     console.log(this.listaFav);
   }
@@ -71,5 +101,10 @@ export class VideojocsFavComponent implements OnInit {
 
     // Recargar la lista
     this.cargarArray();
+  }
+
+  toggle(index: number): void {
+
+    this.listaFav[index].active = (this.listaFav[index].active) === 'active' ? 'inactive' : 'active';
   }
 }
