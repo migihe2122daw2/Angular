@@ -40,43 +40,31 @@
             <mat-icon id="home" routerLink="/">home</mat-icon>
             <button mat-menu-item [matMenuTriggerFor]="Genero">Genero</button>
             <button mat-menu-item [matMenuTriggerFor]="Plataforma">Plataforma</button>
-            <button mat-menu-item [matMenuTriggerFor]="Compania">Compañia</button>
-            <button mat-menu-item [matMenuTriggerFor]="ModoJuego">Modo de juego</button>
             <mat-icon id="home" routerLink="/favoritos" routerLinkActive="active">favorite</mat-icon>
         </mat-menu>
 
         <mat-menu #Genero="matMenu">
-            <button mat-menu-item>Accion</button>
-            <button mat-menu-item>Aventura</button>
-            <button mat-menu-item>Casual</button>
-            <button mat-menu-item>Estrategia</button>
-            <button mat-menu-item>Rol</button>
+            <button routerLink="/accion" mat-menu-item>Accion</button>
+            <button routerLink="/aventura" mat-menu-item>Aventura</button>
+            <button routerLink="/casual" mat-menu-item>Casual</button>
+            <button routerLink="/estrategia" mat-menu-item>Estrategia</button>
+            <button routerLink="/deporte" mat-menu-item>Deporte</button>
         </mat-menu>
 
         <mat-menu #Plataforma="matMenu">
-            <button mat-menu-item>PC</button>
-            <button mat-menu-item>PlayStation</button>
-            <button mat-menu-item>Xbox</button>
-            <button mat-menu-item>Nintendo</button>
-            <button mat-menu-item>Nintendo Switch</button>
+            <button routerLink="/pc" mat-menu-item>PC</button>
+            <button routerLink="/ps" mat-menu-item>PlayStation</button>
+            <button routerLink="/xbox" mat-menu-item>Xbox</button>
+            <button routerLink="/nintendo" mat-menu-item>Nintendo</button>
+            <button routerLink="/wii" mat-menu-item>Wii</button>
+            <button routerLink="/ios" mat-menu-item>iOS</button>
+            <button routerLink="/android" mat-menu-item>Android</button>
+            <button routerLink="/linux" mat-menu-item>Linux</button>
+            <button routerLink="/macos" mat-menu-item>macOS</button>
         </mat-menu>
 
-        <mat-menu #Compania="matMenu">
-            <button mat-menu-item>EA</button>
-            <button mat-menu-item>Ubisoft</button>
-            <button mat-menu-item>Sega</button>
-            <button mat-menu-item>Nintendo</button>
-            <button mat-menu-item>Sony</button>
-        </mat-menu>
-
-        <mat-menu #ModoJuego="matMenu">
-            <button mat-menu-item>Online</button>
-            <button mat-menu-item>Offline</button>
-            <button mat-menu-item>Multiplayer</button>
-            <button mat-menu-item>Singleplayer</button>
-        </mat-menu>
         <mat-form-field>
-            <input [(ngModel)]="searchValue" matInput placeholder="Buscar">
+            <input [(ngModel)]="searchValue" matInput placeholder="Buscar" (keydown.enter)="searchResults(searchValue); onSubmit()" >
             <!-- Hacer que funcione el boton de buscar -->
             <button *ngIf="searchValue" routerLink="/buscar" routerLinkActive="active" mat-button matSuffix mat-icon-button (click)="searchResults(searchValue); onSubmit()" (keyup.enter)="searchResults(searchValue); onSubmit()">
                 <mat-icon>search</mat-icon>

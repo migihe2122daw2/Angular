@@ -11,7 +11,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {HttpClientModule} from '@angular/common/http';
 import { VideojocsTopComponent } from './videojocs/videojocs-top/videojocs-top.component';
-import { VideojocsMostPopularComponent } from './videojocs/videojocs-most-popular/videojocs-most-popular.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -32,18 +31,50 @@ import { MatSliderModule } from '@angular/material/slider';
 import { VidejocsBuscarComponent } from './videojocs/videojocs-buscar/videjocs-buscar.component';
 import { VidejocsInfoComponent } from './videojocs/videjocs-info/videjocs-info.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { CarouselModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md'
+import { LOCALE_ID } from '@angular/core';
 
+import localEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+import { VidejocsAccionComponent } from './videojocs/videjocs-accion/videjocs-accion.component';
+import { VidejocsAventuraComponent } from './videojocs/videjocs-aventura/videjocs-aventura.component';
+import { VidejocsCasualComponent } from './videojocs/videjocs-casual/videjocs-casual.component';
+import { VidejocsEstrategiaComponent } from './videojocs/videjocs-estrategia/videjocs-estrategia.component';
+import { VidejocsDeporteComponent } from './videojocs/videjocs-deporte/videjocs-deporte.component';
+import { VidejocsPcComponent } from './videojocs/videjocs-pc/videjocs-pc.component';
+import { VidejocsPlaystationComponent } from './videojocs/videjocs-playstation/videjocs-playstation.component';
+import { VidejocsXboxComponent } from './videojocs/videjocs-xbox/videjocs-xbox.component';
+import { VidejocsNintendoComponent } from './videojocs/videjocs-nintendo/videjocs-nintendo.component';
+import { VidejocsWiiComponent } from './videojocs/videjocs-wii/videjocs-wii.component';
+import { VidejocsIosComponent } from './videojocs/videjocs-ios/videjocs-ios.component';
+import { VidejocsAndroidComponent } from './videojocs/videjocs-android/videjocs-android.component';
+import { VidejocsLinuxComponent } from './videojocs/videjocs-linux/videjocs-linux.component';
+import { VidejocsMacosComponent } from './videojocs/videjocs-macos/videjocs-macos.component';
+registerLocaleData(localEs, 'es');
 
 
 @NgModule({
   declarations: [
 
     VideojocsTopComponent,
-    VideojocsMostPopularComponent,
     AppComponent,
     VideojocsFavComponent,
     VidejocsBuscarComponent,
-    VidejocsInfoComponent
+    VidejocsInfoComponent,
+    VidejocsAccionComponent,
+    VidejocsAventuraComponent,
+    VidejocsCasualComponent,
+    VidejocsEstrategiaComponent,
+    VidejocsDeporteComponent,
+    VidejocsPcComponent,
+    VidejocsPlaystationComponent,
+    VidejocsXboxComponent,
+    VidejocsNintendoComponent,
+    VidejocsWiiComponent,
+    VidejocsIosComponent,
+    VidejocsAndroidComponent,
+    VidejocsLinuxComponent,
+    VidejocsMacosComponent
   ],
   imports: [
     BrowserModule,
@@ -68,9 +99,12 @@ import {MatChipsModule} from '@angular/material/chips';
     MatOptionModule,
     MatAutocompleteModule, 
     MatSliderModule,
-    MatChipsModule
+    MatChipsModule,
+    CarouselModule,
+    WavesModule,
+    ButtonsModule
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

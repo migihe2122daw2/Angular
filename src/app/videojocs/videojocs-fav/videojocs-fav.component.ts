@@ -27,7 +27,32 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       })),
       transition('inactive => active', animate('500ms ease-in')),
       transition('active => inactive', animate('500ms ease-out'))
-    ])
+    ]),
+    
+
+    trigger('hover', [
+      state('active', style({
+        // Dejar la imagen normal
+        transform: 'scale(1)',
+      })),
+      state('inactive', style({
+        // Poner la imagen aumentada
+        transform: 'scale(1.1)',
+      })),
+      transition('inactive => active', animate('500ms ease-in')),
+      transition('active => inactive', animate('500ms ease-out'))
+    ]),
+
+    trigger('titulo', [
+      state('void', style({
+        // Al cargar la pagina, aparece por arriba
+        transform: 'translateY(-100px)',
+        opacity: 0,
+      })),
+      transition('void => *', animate('1000ms ease-in')),
+      
+
+    ]),
 
   ]
 })
@@ -103,8 +128,35 @@ export class VideojocsFavComponent implements OnInit {
     this.cargarArray();
   }
 
+  mostrarInfoJuego(videojoc: any): void {
+    //Guardar el id en sessionStorage
+    sessionStorage.setItem('id', videojoc.id);
+    // Meter el objeto videojoc en el indexedDB
+    this.guardarVideojoc(videojoc); 
+    
+  }
+
+  guardarVideojoc(videojoc: any) {
+    // Guardar el objeto en localStorage
+    const videojocs = localStorage.getItem('videojocs');
+    let videojocsArray: any[] = [];
+    if (videojocs) {
+      videojocsArray = JSON.parse(videojocs);
+    }
+    const existe = videojocsArray.find(videojoc => videojoc.id === videojoc.id);
+    if (existe) {
+      return;
+    }
+    videojocsArray.push(videojoc);
+    localStorage.setItem('videojocs', JSON.stringify(videojocsArray));
+  }
+
   toggle(index: number): void {
 
     this.listaFav[index].active = (this.listaFav[index].active) === 'active' ? 'inactive' : 'active';
+  }
+
+  toggleCard(index: number): void {
+    this.listaFav[index].activeI = (this.listaFav[index].activeI) === 'active' ? 'inactive' : 'active';
   }
 }

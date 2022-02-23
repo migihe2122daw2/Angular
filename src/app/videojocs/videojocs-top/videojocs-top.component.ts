@@ -28,7 +28,32 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       })),
       transition('inactive => active', animate('500ms ease-in')),
       transition('active => inactive', animate('500ms ease-out'))
-    ])
+    ]),
+
+    // Animacion pasar por encima de la imagen de la tarjeta
+    trigger('hover', [
+      state('inactive', style({
+        // Dejar la imagen normal
+        transform: 'scale(1)',
+      })),
+      state('active', style({
+        // Poner la imagen aumentada
+        transform: 'scale(1.1)',
+      })),
+      transition('inactive => active', animate('500ms ease-in')),
+      transition('active => inactive', animate('500ms ease-out'))
+    ]),
+
+    trigger('titulo', [
+      state('void', style({
+        // Al cargar la pagina, aparece por arriba
+        transform: 'translateY(-100px)',
+        opacity: 0,
+      })),
+      transition('void => *', animate('1000ms ease-in')),
+      
+
+    ]),
 
   ]
 })
@@ -122,7 +147,11 @@ export class VideojocsTopComponent implements OnInit {
     this.listaVideojocs[index].active = (this.listaVideojocs[index].active) === 'active' ? 'inactive' : 'active';
   }
 
+  
+
+  toggleCard(index: number): void {
+    this.listaVideojocs[index].activeI = (this.listaVideojocs[index].activeI) === 'active' ? 'inactive' : 'active';
+  }
 }
 
-// Crear efectos de hover en las imagenes de los videojocs
 
